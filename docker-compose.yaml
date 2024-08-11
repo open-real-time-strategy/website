@@ -1,1 +1,36 @@
 services:
+
+  # Install composer dependencies
+  #
+  install_composer_packages:
+    image: composer:latest
+    container_name: open_rts_composer
+    user: 1000:1000
+    volumes:
+      - ./application:/app
+    working_dir: /app
+    command: install
+
+  # Install npm dependencies
+  #
+  install_npm_packages:
+    image: node:latest
+    container_name: open_rts_npm
+    user: 1000:1000
+    volumes:
+      - ./application:/app
+    working_dir: /app
+    command: npm install
+
+  # Container for the web server
+  #
+  website:
+    image: php:8.3
+    container_name: open_rts_website
+    user: 1000:1000
+    volumes:
+      - ./application:/app
+    working_dir: /app
+    ports:
+      - 8000:8000
+    command: php artisan serve --host=0.0.0.0 --port=8000
