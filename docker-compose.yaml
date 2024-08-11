@@ -22,6 +22,20 @@ services:
     working_dir: /app
     command: npm install
 
+  # Dev container for frontend
+  #
+  frontend:
+    image: node:latest
+    container_name: open_rts_frontend
+    user: 1000:1000
+    volumes:
+      - ./application:/app
+    working_dir: /app
+    ports:
+      - 3000:3000
+    command: npm run dev
+
+
   # Container for the web server
   #
   website:

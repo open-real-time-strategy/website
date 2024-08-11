@@ -23,7 +23,7 @@ docker compose run install_npm_packages
 ## Starting the server locally
 To start the server locally, run the following script:
 ```bash
-docker compose up -d website
+docker compose up -d frontend website
 ```
 
 
